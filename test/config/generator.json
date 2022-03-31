@@ -1,0 +1,52 @@
+{
+  "generator": {
+    "debugAddr": ":8089",
+    "tls": {
+      "caCertFile": "test/grpc-mtls/minica.pem",
+      "certFile": "test/grpc-mtls/generator.crls/cert.pem",
+      "keyFile": "test/grpc-mtls/generator.crls/key.pem"
+    },
+    "grpcCRLGenerator": {
+      "address": ":9089",
+      "maxConnectionAge": "30s",
+      "clientNames": [
+        "updater.crls"
+      ]
+    },
+    "issuers": [
+      {
+        "useForRSALeaves": true,
+        "useForECDSALeaves": false,
+        "issuerURL": "http://rsa.crls.org/issuer",
+        "ocspURL": "http://rsa.crls.org/ocsp",
+        "crlURL": "http://rsa.crls.org/crl",
+        "location": {
+          "file": "test/wpki/int-rsa.key.pem",
+          "certFile": "test/wpki/int-rsa.cert.pem",
+          "numSessions": 2
+        }
+      },
+      {
+        "useForRSALeaves": false,
+        "useForECDSALeaves": true,
+        "issuerURL": "http://ecdsa.crls.org/issuer",
+        "ocspURL": "http://ecdsa.crls.org/ocsp",
+        "crlURL": "http://ecdsa.crls.org/crl",
+        "location": {
+          "file": "test/wpki/int-ecdsa.key.pem",
+          "certFile": "test/wpki/int-ecdsa.cert.pem",
+          "numSessions": 2
+        }
+      }
+    ],
+    "lifespanCRL": "216h"
+  },
+
+  "syslog": {
+    "stdoutlevel": 6,
+    "sysloglevel": 6
+  },
+  "beeline": {
+    "mute": true
+  }
+}

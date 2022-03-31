@@ -1,0 +1,38 @@
+{
+  "updater": {
+    "debugAddr": ":8088",
+    "tls": {
+      "caCertFile": "test/grpc-mtls/minica.pem",
+      "certFile": "test/grpc-mtls/updater.crls/cert.pem",
+      "keyFile": "test/grpc-mtls/updater.crls/key.pem"
+    },
+    "crlGeneratorService": {
+      "serverAddress": "localhost:9089",
+      "timeout": "15s"
+    },
+    "issuers": [
+      {
+        "location": {
+          "file": "test/wpki/int-rsa.key.pem",
+          "certFile": "test/wpki/int-rsa.cert.pem",
+          "numSessions": 2
+        }
+      },
+      {
+        "location": {
+          "file": "test/wpki/int-ecdsa.key.pem",
+          "certFile": "test/wpki/int-ecdsa.cert.pem",
+          "numSessions": 2
+        }
+      }
+    ]
+  },
+
+  "syslog": {
+    "stdoutlevel": 6,
+    "sysloglevel": 6
+  },
+  "beeline": {
+    "mute": true
+  }
+}
